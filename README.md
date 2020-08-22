@@ -4,7 +4,7 @@ Rust implementation for reading Arch linux packages informations
 # Usage
 Add following to your Cargo.toml
 ```toml
-pkginfo = "0.1.1"
+pkginfo = "0.1.2"
 ```
 
 ### Example:

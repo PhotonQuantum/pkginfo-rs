@@ -12,7 +12,7 @@ use crate::{arch::Architecture, errors::Error, license::License};
 use tar::Archive;
 
 /// PkgInfo represents the data from an Arch linux package.
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct PkgInfo {
     pub pkg_name: String,
     pub pkg_base: Option<String>,
@@ -27,27 +27,6 @@ pub struct PkgInfo {
     pub depend: Vec<String>,
     pub opt_depend: Vec<String>,
     pub make_depend: Vec<String>,
-}
-
-/// Implement the Default trait for PkgInfo
-impl Default for PkgInfo {
-    fn default() -> Self {
-        PkgInfo {
-            pkg_name: "".to_owned(),
-            pkg_base: None,
-            pkg_ver: "".to_owned(),
-            pkg_desc: "".to_owned(),
-            url: None,
-            size: 0,
-            arch: Architecture::Unsupported("".to_owned()),
-            license: None,
-            conflict: Vec::new(),
-            provides: Vec::new(),
-            depend: Vec::new(),
-            opt_depend: Vec::new(),
-            make_depend: Vec::new(),
-        }
-    }
 }
 
 impl PkgInfo {
@@ -96,6 +75,7 @@ impl PkgInfo {
             "optdepend" => self.opt_depend.push(value),
             "makedepend" => self.make_depend.push(value),
             "arch" => self.arch = Architecture::parse(value),
+            "license" => self.license = Some(License::parse(value)),
             _ => {}
         }
     }

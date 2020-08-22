@@ -11,8 +11,14 @@ pub enum Architecture {
     Unsupported(String),
 }
 
+impl Default for Architecture {
+    fn default() -> Self {
+        Architecture::Unsupported("".to_owned())
+    }
+}
+
 impl Architecture {
-    pub fn parse(s: String) -> Architecture {
+    pub fn parse(s: String) -> Self {
         match s.trim().to_lowercase().as_str() {
             "i686" => Architecture::I686,
             "pentium4" => Architecture::Pentium4,
