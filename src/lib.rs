@@ -1,6 +1,6 @@
-mod arch;
-mod errors;
-mod license;
+pub mod arch;
+pub mod errors;
+pub mod license;
 
 use std::fs::{File, OpenOptions};
 use std::io;
