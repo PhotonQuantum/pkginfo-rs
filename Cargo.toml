@@ -1,6 +1,9 @@
 [package]
 name = "pkginfo"
 description = "Parse Arch linux packages information"
+readme = "README.md"
+license-file ="LICENSE"
+repository = "https://github.com/JojiiOfficial/pkginfo-rs" 
 version = "0.1.0"
 authors = ["jojii <jojii@gmx.net>"]
 edition = "2018"
