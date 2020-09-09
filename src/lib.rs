@@ -9,6 +9,7 @@ use std::path::Path;
 
 use crate::{arch::Architecture, errors::Error, license::License};
 
+use itertools::join;
 use tar::Archive;
 
 /// PkgInfo represents the data from an Arch linux package.
@@ -46,7 +47,7 @@ impl PkgInfo {
             let mut splitted = line.split('=');
             let key = splitted.next().unwrap().trim();
             let value: String = {
-                let v: String = splitted.collect();
+                let v: String = join(splitted, "=");
                 v.trim().into()
             };
 

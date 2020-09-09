@@ -63,8 +63,7 @@ fn make_depend() {
 fn provides() {
     let info = setup_info();
     // FIXME
-    // acpi_call=1.1.0-287 <- is correct
-    assert_eq!(info.provides, vec!["acpi_call1.1.0-287"]);
+    assert_eq!(info.provides, vec!["acpi_call=1.1.0-287"]);
 }
 
 #[test]
@@ -82,8 +81,7 @@ fn size() {
 #[test]
 fn arch() {
     let info = setup_info();
-    // TODO make public
-    // assert_eq!(info.arch, pkginfo::Architecture::X86_64);
+    assert_eq!(info.arch, pkginfo::arch::Architecture::X86_64);
 }
 
 #[test]
