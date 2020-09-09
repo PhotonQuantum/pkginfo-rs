@@ -1,0 +1,18 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: Build
+  image: rust:1.46.0-alpine
+  commands:
+  - apk update && apk upgrade
+  - apk add gcc libc-dev openssl openssl-dev
+  - cargo build --all
+
+- name: Test
+  image: rust:1.46.0-alpine
+  commands:
+  - apk update && apk upgrade
+  - apk add gcc libc-dev openssl openssl-dev
+  - cargo test --all
