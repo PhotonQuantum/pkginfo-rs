@@ -1,12 +1,18 @@
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum License {
     BSD,
     MIT,
     Apache,
-    GPLv3,
-    GPLv2,
+    GPL(GPLVersion),
     LGPL,
     Unsupported(String),
+}
+
+#[derive(Debug, PartialEq)]
+pub enum GPLVersion {
+    V2,
+    V3,
+    Undefined,
 }
 
 impl Default for License {
@@ -22,8 +28,9 @@ impl License {
             "apache" => License::Apache,
             "bsd" => License::BSD,
             "lgpl" => License::LGPL,
-            "gplv2" | "gpl2" | "gpl-2" => License::GPLv2,
-            "gplv3" | "gpl3" | "gpl-3" => License::GPLv3,
+            "gpl" => License::GPL(GPLVersion::Undefined),
+            "gplv2" | "gpl2" | "gpl-2" => License::GPL(GPLVersion::V2),
+            "gplv3" | "gpl3" | "gpl-3" => License::GPL(GPLVersion::V3),
 
             other => License::Unsupported(other.to_owned()),
         }

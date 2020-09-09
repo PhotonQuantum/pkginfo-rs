@@ -62,7 +62,6 @@ fn make_depend() {
 #[test]
 fn provides() {
     let info = setup_info();
-    // FIXME
     assert_eq!(info.provides, vec!["acpi_call=1.1.0-287"]);
 }
 
@@ -88,6 +87,8 @@ fn arch() {
 fn license() {
     let info = setup_info();
     assert!(info.license.is_some());
-    // TODO add gpl
-    //assert_eq!(info.license, pkginfo::License::GPLv2);
+    assert_eq!(
+        info.license.unwrap(),
+        pkginfo::license::License::GPL(pkginfo::license::GPLVersion::Undefined)
+    );
 }
