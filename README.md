@@ -1,3 +1,5 @@
+[![Build Status](https://drone.jojii.de/api/badges/jojii/pkginfo-rs/status.svg)](https://drone.jojii.de/jojii/pkginfo-rs)
+
 # pkginfo-rs
 Rust implementation for reading Arch linux packages informations
 
