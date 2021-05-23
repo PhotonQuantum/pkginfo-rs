@@ -1,3 +1,5 @@
+use std::fmt::{Display, Formatter, Result};
+
 #[derive(Debug, PartialEq)]
 pub enum Architecture {
     X86_64,
@@ -14,6 +16,22 @@ pub enum Architecture {
 impl Default for Architecture {
     fn default() -> Self {
         Architecture::Unsupported("".to_owned())
+    }
+}
+
+impl Display for Architecture{
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(f, "{}", match self {
+            Architecture::X86_64 => "x86_64",
+            Architecture::I686 => "i686",
+            Architecture::Pentium4 => "pentium4",
+            Architecture::Arm => "arm",
+            Architecture::Armv7h => "armv7h",
+            Architecture::Armv6h => "armv6h",
+            Architecture::Aarch64 =>"aarch64",
+            Architecture::Any => "any",
+            Architecture::Unsupported(s) => s.as_str()
+        })
     }
 }
 
