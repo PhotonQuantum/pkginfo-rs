@@ -32,7 +32,7 @@ pub struct PkgInfo {
 
 impl PkgInfo {
     /// Parses a file from a Reader R
-    fn parse_file<R: Read>(entry: R) -> Result<Self, Error> {
+    pub fn parse_file<R: Read>(entry: R) -> Result<Self, Error> {
         let reader = io::BufReader::new(entry);
         let mut pkg_info = PkgInfo::default();
 
