@@ -22,7 +22,7 @@ pub struct PkgInfo {
     pub url: Option<String>,
     pub size: u32,
     pub arch: Architecture,
-    pub license: Option<License>,
+    pub license: Vec<License>,
     pub conflict: Vec<String>,
     pub provides: Vec<String>,
     pub depend: Vec<String>,
@@ -76,7 +76,7 @@ impl PkgInfo {
             "optdepend" => self.opt_depend.push(value),
             "makedepend" => self.make_depend.push(value),
             "arch" => self.arch = Architecture::parse(value),
-            "license" => self.license = Some(License::parse(value)),
+            "license" => self.license.push(License::parse(value)),
             _ => {}
         }
     }

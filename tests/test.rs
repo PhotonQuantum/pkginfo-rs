@@ -85,10 +85,10 @@ fn arch() {
 
 #[test]
 fn license() {
-    let info = setup_info();
-    assert!(info.license.is_some());
+    let mut info = setup_info();
+    assert_eq!(info.license.len(), 1);
     assert_eq!(
-        info.license.unwrap(),
+        info.license.pop().unwrap(),
         pkginfo::license::License::GPL(pkginfo::license::GPLVersion::Undefined)
     );
 }

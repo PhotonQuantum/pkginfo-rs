@@ -1,3 +1,5 @@
+use std::fmt::{Display, Formatter, Result};
+
 #[derive(Debug, PartialEq)]
 pub enum License {
     BSD,
@@ -18,6 +20,21 @@ pub enum GPLVersion {
 impl Default for License {
     fn default() -> Self {
         License::Unsupported("".to_string())
+    }
+}
+
+impl Display for License {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(f, "{}", match self {
+            License::BSD => "bsd",
+            License::MIT => "mit",
+            License::Apache => "apache",
+            License::GPL(GPLVersion::V2) => "gplv2",
+            License::GPL(GPLVersion::V3) => "gplv3",
+            License::GPL(GPLVersion::Undefined) => "gpl",
+            License::LGPL => "lgpl",
+            License::Unsupported(s) => s.as_str()
+        })
     }
 }
 
